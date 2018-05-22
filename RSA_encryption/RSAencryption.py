@@ -1,7 +1,7 @@
 ###
-### author: KamilKról
+### author: Kamil Król
 ###
-from math import sqrt
+from math import sqrt,ceil
 import random
 class RSAencryption:
     primes =[]
@@ -60,7 +60,19 @@ class Task:
         for s in message:
             self.message_decrypted.append(chr(Task.fast_power_modulo(Task,s,Task.private_key[0],Task.private_key[1])))
          
-        
+    def factorize_number(self, number):
+        factors= set()
+        for i in range(2,ceil(sqrt(number))):
+            while number%i==0:
+                factors.add(i)
+                number=number//i
+        factors.add(number)
+        return factors
+
+    def find_modular_multiplicative_inverse(self, number, modulus):
+        for i in range(2,modulus):
+            if (number * i) % modulus == 1:
+                return i
 
 def main():
     #RSAencryption.sieve_of_eratosthenes(RSAencryption,82)
@@ -68,9 +80,16 @@ def main():
     #RSAencryption.print_primes(RSAencryption)
     task=Task()
     #print(task.message_10)
+    n=10108091
+    k=2062465
     Task.decrypt(task,task.message_10)
+    print("Message:")
     print(''.join(task.message_decrypted))
-
-
+    print("Factorization of 10108091:")
+    print(task.factorize_number(101080891))
+    phi_number=(10009-1)*(10099-1)
+    print("Multiplicative inverse of 2062465 modulo "+str(phi_number)+":")
+    print(task.find_modular_multiplicative_inverse(k,phi_number))
+    
 if __name__ == '__main__':
     main()
