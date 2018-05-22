@@ -3,40 +3,7 @@
 ###
 from math import sqrt,ceil
 import random
-class RSAencryption:
-    primes =[]
-    def sieve_of_eratosthenes(self,sup):
-        allnumbers =sup*[True]
-        allnumbers[0]=False
-        allnumbers[1]=False
-        for i in range(2,int(sqrt(sup))+1):
-            for j in range(i*i,sup):
-                if j%i==0:
-                    allnumbers[j]=False
-        for k in range(0, len(allnumbers)):
-            if allnumbers[k]==True:
-                self.primes.append(k)
 
-    def print_primes(self):
-        print(self.primes)
-
-    def encrypt(self,message):
-        pass
-    
-    def decrypt(self,cypher):
-        pass
-
-    def generate_keys(self,supremum):
-        RSAencryption.sieve_of_eratosthenes(self,supremum)
-        if len(RSAencryption.primes)<2:
-            print("Too short range")
-            return None
-        key1 = random.choice(RSAencryption.primes)
-        key2 = random.choice(RSAencryption.primes)
-        while key2==key1:
-            key2 = random.choice(RSAencryption.primes)
-        return [key1,key2]    
-    
 class Task:
     message_decrypted=[]
     message_10=[]
