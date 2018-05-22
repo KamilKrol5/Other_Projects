@@ -7,7 +7,9 @@ public class PrimeNumbers {
     private int[] primes;
     private int AmountOfPrimesInRange;
 
-
+    /**Constructor of an object.
+     * @param n upper limit of prime numbers to be generated.
+     */
     public PrimeNumbers(int n) {
         if (n <= 0) {
             throw new IllegalArgumentException("Wrong range.");
@@ -44,14 +46,24 @@ public class PrimeNumbers {
         }
     }
 
-    public int getAmountOfPrimesInRange() {
-        return AmountOfPrimesInRange;
-    }
-
+    /**Constructor of an object.
+     * @param n upper limit of prime numbers to be generated.
+     */
     public PrimeNumbers(long n) {
         this((int)n);
     }
 
+    /**Returns amount of primes in primes array.
+     * @return amount of primes in range.
+     */
+    public int getAmountOfPrimesInRange() {
+        return AmountOfPrimesInRange;
+    }
+
+    /**Returns mth prime number in primes array.
+     * @param m index of prime number to be returned.
+     * @return mth prime number.
+     */
     public int number(int m) //returns mth prime number in array primes
     {
         return primes[m];

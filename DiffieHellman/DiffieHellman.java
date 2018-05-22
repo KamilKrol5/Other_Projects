@@ -61,22 +61,23 @@ public class DiffieHellman {
     /**
      * Finds smallest generator of multiplicative group (Z/nZ,*).
      * n has to be be prime.
+     *
      * @param n prime number, which is not checked
      * @return smallest generator of group (Z/nZ,*), -1 if failed to find it.
      */
     public static long findSmallestGeneratorButBetter(long n) {
-        long setCardinality=n-1;
+        long setCardinality = n - 1;
         Set<Long> factors = factorizeNumber(setCardinality);
-        for(long i=2;i<setCardinality;i++) {
-            if(fastPowerModulo(i,setCardinality,n)==1) {
-                boolean isGenerator=true;
+        for (long i = 2; i < setCardinality; i++) {
+            if (fastPowerModulo(i, setCardinality, n) == 1) {
+                boolean isGenerator = true;
                 for (Long factor : factors) {
-                    if(fastPowerModulo(i,setCardinality/factor,n)==1){
-                        isGenerator=false;
+                    if (fastPowerModulo(i, setCardinality / factor, n) == 1) {
+                        isGenerator = false;
                         break;
                     }
                 }
-                if(isGenerator) return i;
+                if (isGenerator) return i;
             }
         }
         return -1;
@@ -102,9 +103,14 @@ public class DiffieHellman {
         }
     }
 
+    /**
+     * Main function.
+     *
+     * @param args arguments
+     */
     public static void main(String[] args) {
         //--check if 1000003 is prime--
-        System.out.println("Factorization of 1000003: "+factorizeNumber(1000003));
+        System.out.println("Factorization of 1000003: " + factorizeNumber(1000003));
         //--check smallest generator of cyclic group of order 1000003--
         long generator = findSmallestGeneratorButBetter(n); //m=1000003
         System.out.println("Generator found = " + generator);
@@ -122,7 +128,7 @@ public class DiffieHellman {
             b = secureRandom.nextInt(amountOfPrimesInRange);
             securityCounter++;
         }
-        //now a and b are private keys
+        //--now a and b are private keys--
         a = primeNumbers.number(a);
         b = primeNumbers.number(b);
         System.out.println("a random number = " + a);
