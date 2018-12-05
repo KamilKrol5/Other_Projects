@@ -25,5 +25,6 @@ hs_err_pid*
 .o
 __pycache__/
 .vscode/
+ExploringCPPBasics/
 .out/
 *.iml
